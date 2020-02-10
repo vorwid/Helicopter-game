@@ -13,3 +13,7 @@ def napisz(tekst, x, y, rozmiar):
     screen.blit(rend, (x,y))  # this line is use to put render text in graphic window
     
 napisz("Nacisnij spacje zeby zaczac", 80, 150, 20)
+
+pygame.display.update()
+
+
