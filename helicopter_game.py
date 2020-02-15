@@ -14,7 +14,7 @@ def napisz(tekst, x, y, rozmiar):
     rend = czcionka.render(tekst, 1, (255,100,100))
     screen.blit(rend, (x, y))  # this line is use to put render text in graphic window
 
-copokazuje = "rozgrywka"
+copokazuje = "menu"
 
 class Helicopter():
     def __init__(self, x, y):
@@ -64,7 +64,7 @@ for i in range(21):
 gracz = Helicopter(250, 275)
 dy = 0
 
-while True:                                     # This loop close game window
+while True:                                     # This loop contains game window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
                     pygame.quit()
@@ -74,11 +74,16 @@ while True:                                     # This loop close game window
                 dy = -1
             if event.key == pygame.K_DOWN:
                 dy = 1
+            if event.key == pygame.K_SPACE:
+                if copokazuje != "rozgrywka":
+                    gracz = Helicopter (250,275)
+                    dy = 0
+                    copokazuje = "rozgrywka"
                     
     screen.fill((0, 0, 0))
     if copokazuje == "menu":
             napisz("Nacisnij spacje zeby zaczac", 80, 150, 20)
-            grafika = pygame.image.load(os.path.join("helicoper.png"))
+            grafika = pygame.image.load(os.path.join("helicopter!.png"))
             screen.blit(grafika, (80, 30))
     elif copokazuje == "rozgrywka":
         for p in przeszkody:
