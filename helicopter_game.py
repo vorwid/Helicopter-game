@@ -50,6 +50,11 @@ class Przeszkoda():
         self.x = self.x - v
         self.ksztalt_gora = pygame.Rect(self.x, self.y_gora, self.szerokosc, self.wys_gora)
         self.ksztalt_dol = pygame.Rect(self.x, self.y_dol, self.szerokosc, self.wys_dol)
+    def kolizja(self, player):
+        if self.ksztalt_gora.colliderect(player) or self.ksztalt_dol.colliderect(player):
+            return True
+        else:
+            return False
                                 
 
 przeszkody = []
@@ -64,6 +69,12 @@ while True:                                     # This loop close game window
         if event.type == pygame.QUIT:
                     pygame.quit()
                     quit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                dy = -1
+            if event.key == pygame.K_DOWN:
+                dy = 1
+                    
     screen.fill((0, 0, 0))
     if copokazuje == "menu":
             napisz("Nacisnij spacje zeby zaczac", 80, 150, 20)
@@ -73,6 +84,8 @@ while True:                                     # This loop close game window
         for p in przeszkody:
             p.ruch(1)
             p.rysuj()
+            if p.kolizja(gracz.ksztalt):
+                copokazuje = "koniec"
         for p in przeszkody:
             if p.x <= -p.szerokosc:
                 przeszkody.remove(p)
