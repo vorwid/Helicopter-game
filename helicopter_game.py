@@ -1,6 +1,7 @@
 import pygame
 import os
 import random
+import math
 
 pygame.init()
 
@@ -79,6 +80,7 @@ while True:                                     # This loop contains game window
                     gracz = Helicopter (250,275)
                     dy = 0
                     copokazuje = "rozgrywka"
+                    punkty = 0
                     
     screen.fill((0, 0, 0))
     if copokazuje == "menu":
@@ -95,9 +97,14 @@ while True:                                     # This loop contains game window
             if p.x <= -p.szerokosc:
                 przeszkody.remove(p)
                 przeszkody.append((Przeszkoda(szer, szer/20)))
+                punkty = punkty + math.fabs(dy) 
 
         gracz.rysuj()
         gracz.ruch(dy)
+    elif copokazuje == "koniec":
+        grafika = pygame.image.load(os.path.join("helicopter!.png"))
+        screen.blit(grafika, (80, 30))
+        napisz("Przegrana, nacisnij spacje zeby zaczac od nowa!", 50, 290, 20)
     
     pygame.display.update()
 
