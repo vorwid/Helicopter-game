@@ -101,10 +101,14 @@ while True:                                     # This loop contains game window
 
         gracz.rysuj()
         gracz.ruch(dy)
+        napisz(str(punkty) 50, 50, 20)
+
+        
     elif copokazuje == "koniec":
         grafika = pygame.image.load(os.path.join("helicopter!.png"))
         screen.blit(grafika, (80, 30))
         napisz("Przegrana, nacisnij spacje zeby zaczac od nowa!", 50, 290, 20)
+        napisz("Twoj wynik to: " + str(punkty), 50, 320, 20)
     
     pygame.display.update()
 
